@@ -4,14 +4,11 @@ export default class RenderCards {
     constructor() {
         this.cardsContainer = document.createElement("div");
         this.cardsContainer.classList.add("containercards");
-        console.log(this.body);
         this.container = document.querySelector(".container");
-        console.log(this.container);
         this.container.append(this.cardsContainer);
     }
 
     onRenderCards() {
-        console.log(cards);
         for (let i = 0; i < cards[0].length; i++) {
             this.image = document.createElement("img");
             this.image.classList.add("cardImage");
@@ -24,6 +21,7 @@ export default class RenderCards {
             this.cardSection.append(this.image);
             this.cardsContainer.append(this.cardSection);
             this.cardSection.append(this.belText);
+            this.image.alt = cards[0][i].audio;
         }
     }
 

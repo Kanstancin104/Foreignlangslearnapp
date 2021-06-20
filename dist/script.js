@@ -152,11 +152,55 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 var playGame = /*#__PURE__*/function () {
   function playGame() {
     _classCallCheck(this, playGame);
+
+    this.playButton = document.createElement("div");
+    this.playButton.classList.add("playButtonClass");
+    this.container = document.querySelector(".container");
+    this.container.append(this.playButton);
+    this.playButton.innerHTML = "Start game";
+    this.picsContainer = document.querySelectorAll("cardImage");
+    this.audio = new Audio();
+    this.audioArr = [];
+    this.correctAudio = new Audio();
+    this.wrongAudio = new Audio();
+    this.playButtonRepeat = document.createElement("div");
+    this.playButtonRepeat.classList.add("playButtonRepeatClass");
   }
 
   _createClass(playGame, [{
+    key: "onPlayGame",
+    value: function onPlayGame() {
+      var _this = this;
+
+      this.picsContainer = document.querySelectorAll(".cardImage");
+
+      var _loop = function _loop(i) {
+        _this.playButton.addEventListener("click", function () {
+          _this.audioArr.push(_data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][0][i].audio);
+
+          _this.audioArr.sort(function () {
+            return Math.random() - 0.5;
+          });
+
+          _this.audio.src = _this.audioArr[0];
+
+          _this.audio.play();
+
+          _this.container.append(_this.playButtonRepeat);
+
+          _this.playButton.remove();
+        });
+      };
+
+      for (var i = 0; i < _data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][0].length; i++) {
+        _loop(i);
+      }
+    }
+  }, {
     key: "init",
-    value: function init() {}
+    value: function init() {
+      this.onPlayGame();
+    }
   }]);
 
   return playGame;
@@ -191,17 +235,13 @@ var RenderCards = /*#__PURE__*/function () {
 
     this.cardsContainer = document.createElement("div");
     this.cardsContainer.classList.add("containercards");
-    console.log(this.body);
     this.container = document.querySelector(".container");
-    console.log(this.container);
     this.container.append(this.cardsContainer);
   }
 
   _createClass(RenderCards, [{
     key: "onRenderCards",
     value: function onRenderCards() {
-      console.log(_data_cards__WEBPACK_IMPORTED_MODULE_0__["default"]);
-
       for (var i = 0; i < _data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][0].length; i++) {
         this.image = document.createElement("img");
         this.image.classList.add("cardImage");
@@ -214,6 +254,7 @@ var RenderCards = /*#__PURE__*/function () {
         this.cardSection.append(this.image);
         this.cardsContainer.append(this.cardSection);
         this.cardSection.append(this.belText);
+        this.image.alt = _data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][0][i].audio;
       }
     }
   }, {
@@ -243,49 +284,49 @@ var cards = [[{
   word: "schwimmen",
   translation: "плаваць",
   img: "src/data/img/swim.jpeg",
-  audio: "./audio/schwimmen.ogg.mp3",
+  audio: "src/data/audio/schwimmen.ogg.mp3",
   id: 0
 }, {
   word: "beißen",
   translation: "кусаць",
   img: "src/data/img/beissen.jpeg",
-  audio: "./audio/beißen.ogg.mp3",
+  audio: "src/data/audio/beißen.ogg.mp3",
   id: 1
 }, {
   word: "weinen",
   translation: "плакаць",
   img: "src/data/img/cry.jpeg",
-  audio: "./audio/weinen.ogg.mp3",
+  audio: "src/data/audio/weinen.ogg.mp3",
   id: 2
 }, {
   word: "fernsehen",
   translation: "глядзець тэлевізар",
   img: "src/data/img/fernsehen.jpeg",
-  audio: "./audio/Fernsehen.ogg.mp3",
+  audio: "src/data/audio/Fernsehen.ogg.mp3",
   id: 3
 }, {
   word: "joggen",
   translation: "бегаць",
   img: "src/data/img/joggen.jpeg",
-  audio: "./audio/joggen.ogg.mp3",
+  audio: "src/data/audio/joggen.ogg.mp3",
   id: 4
 }, {
   word: "lernen",
   translation: "вучыцца",
   img: "src/data/img/lernen.jpeg",
-  audio: "./audio/lernen2.ogg.mp3",
+  audio: "src/data/audio/lernen2.ogg.mp3",
   id: 5
 }, {
   word: "lesen",
   translation: "чытаць",
   img: "src/data/img/lesen.jpeg",
-  audio: "./audio/lesen.ogg.mp3",
+  audio: "src/data/audio/lesen.ogg.mp3",
   id: 6
 }, {
   word: "springen",
   translation: "прыгаць",
   img: "src/data/img/springen.jpeg",
-  audio: "./audio/springen.ogg.mp3",
+  audio: "src/data/audio/springen.ogg.mp3",
   id: 7
 }]];
 /* harmony default export */ __webpack_exports__["default"] = (cards);
