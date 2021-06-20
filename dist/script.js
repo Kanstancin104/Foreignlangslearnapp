@@ -165,6 +165,11 @@ var playGame = /*#__PURE__*/function () {
     this.wrongAudio = new Audio();
     this.playButtonRepeat = document.createElement("div");
     this.playButtonRepeat.classList.add("playButtonRepeatClass");
+    this.errorCounter = 0;
+    this.errorDiv = document.createElement("div");
+    this.container.append(this.errorDiv);
+    this.errorDiv.classList.add("errorCounter");
+    this.errorDiv.innerHTML = "Errors:".concat(this.errorCounter);
   }
 
   _createClass(playGame, [{
@@ -188,7 +193,13 @@ var playGame = /*#__PURE__*/function () {
 
           _this.container.append(_this.playButtonRepeat);
 
+          console.log(_this.picsContainer);
+
           _this.playButton.remove();
+        });
+
+        _this.playButtonRepeat.addEventListener("click", function () {
+          _this.audio.play();
         });
       };
 
@@ -197,9 +208,42 @@ var playGame = /*#__PURE__*/function () {
       }
     }
   }, {
+    key: "chooseCard",
+    value: function chooseCard() {
+      var _this2 = this;
+
+      this.picsContainer.forEach(function (item) {
+        item.addEventListener("click", function (event) {
+          _this2.currentTarget = event.target;
+          console.log(_this2.currentTarget);
+
+          if (_this2.audioArr[0].includes(item.alt)) {
+            _this2.correctAudio.src = 'src/data/audio/success.mp3';
+
+            _this2.correctAudio.play();
+
+            _this2.audioArr.shift();
+
+            item.classList.add("usedCard");
+            _this2.audio.src = _this2.audioArr[0];
+            setTimeout(function () {
+              _this2.audio.play();
+            }, 1000);
+          } else {
+            _this2.wrongAudio.src = 'src/data/audio/fail.mp3';
+
+            _this2.wrongAudio.play();
+
+            _this2.errorDiv.innerHTML = "Errors:".concat(_this2.errorCounter += 1);
+          }
+        });
+      });
+    }
+  }, {
     key: "init",
     value: function init() {
       this.onPlayGame();
+      this.chooseCard();
     }
   }]);
 
