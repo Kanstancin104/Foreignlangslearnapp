@@ -1,4 +1,5 @@
-import cards from "../../data/cards"
+import cards from "../../data/cards";
+import finishGame from "../finish_game/finish_game";
 
 export default class playGame {
     constructor() {
@@ -19,6 +20,7 @@ export default class playGame {
         this.container.append(this.errorDiv);
         this.errorDiv.classList.add("errorCounter");
         this.errorDiv.innerHTML = `Errors:${this.errorCounter}`;
+        this.finishGame = new finishGame()
     }
 
     onPlayGame() {
@@ -30,7 +32,6 @@ export default class playGame {
                 this.audio.src = this.audioArr[0];
                 this.audio.play();
                 this.container.append(this.playButtonRepeat);
-                console.log(this.picsContainer);
                 this.playButton.remove();
 
             })
@@ -44,7 +45,6 @@ export default class playGame {
         this.picsContainer.forEach(item => {
             item.addEventListener("click", (event) => {
                 this.currentTarget = event.target;
-                console.log(this.currentTarget);
                 if (this.audioArr[0].includes(item.alt)) {
                     this.correctAudio.src = 'src/data/audio/success.mp3'
                     this.correctAudio.play();
@@ -59,12 +59,22 @@ export default class playGame {
                     this.wrongAudio.play();
                     this.errorDiv.innerHTML = `Errors:${this.errorCounter += 1}`;
                 }
+                this.onEndGame()
             })
         })
+    }
+
+    onEndGame() {
+        if (!this.audioArr.length) {
+            this.errorCounter ?
+                this.finishGame.failGame(this.errorCounter) :
+                this.finishGame.winGame();
+        }
     }
 
     init() {
         this.onPlayGame()
         this.chooseCard()
+
     }
 }

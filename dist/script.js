@@ -130,6 +130,80 @@ var Factory = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./src/components/finish_game/finish_game.js":
+/*!***************************************************!*\
+  !*** ./src/components/finish_game/finish_game.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return finishGame; });
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+var finishGame = /*#__PURE__*/function () {
+  function finishGame() {
+    _classCallCheck(this, finishGame);
+
+    this.container = document.querySelector(".container");
+    this.newGameButton = document.createElement("div");
+    this.newGameButton.classList.add("newGame");
+    this.newGameButton.innerHTML = "New Game";
+  }
+
+  _createClass(finishGame, [{
+    key: "removeAllChildNodes",
+    value: function removeAllChildNodes(parent) {
+      while (parent.firstChild) {
+        parent.removeChild(parent.firstChild);
+      }
+    }
+  }, {
+    key: "failGame",
+    value: function failGame(count) {
+      this.removeAllChildNodes(this.container);
+      this.lose = document.createElement("div");
+      this.lose.classList.add("loseMessage");
+      this.container.append(this.lose);
+      this.lose.innerHTML = "Нажаль, вы не выгралі, паспрабуйце згуляць зноў";
+      this.container.append(this.errorAmount);
+      this.errorAmount = document.createElement("div");
+      this.errorAmount.classList.add("errorAmount");
+      this.errorAmount.innerHTML = "\u041A\u043E\u043B\u044C\u043A\u0430\u0441\u044C\u0446\u044C \u043F\u0430\u043C\u044B\u043B\u0430\u043A: ".concat(count);
+      this.resetGame();
+    }
+  }, {
+    key: "winGame",
+    value: function winGame() {
+      this.removeAllChildNodes(this.container);
+      this.win = document.createElement("div");
+      this.win.classList.add("winMessage");
+      this.container.append(this.win);
+      this.win.innerHTML = "Віншую! Вы выгралі!";
+      this.resetGame();
+    }
+  }, {
+    key: "resetGame",
+    value: function resetGame() {
+      this.container.append(this.newGameButton);
+      this.newGameButton.addEventListener("click", function () {
+        window.location.reload();
+      });
+    }
+  }]);
+
+  return finishGame;
+}();
+
+
+
+/***/ }),
+
 /***/ "./src/components/playgame/playGame.js":
 /*!*********************************************!*\
   !*** ./src/components/playgame/playGame.js ***!
@@ -141,11 +215,13 @@ var Factory = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return playGame; });
 /* harmony import */ var _data_cards__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../data/cards */ "./src/data/cards.js");
+/* harmony import */ var _finish_game_finish_game__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../finish_game/finish_game */ "./src/components/finish_game/finish_game.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 
@@ -170,6 +246,7 @@ var playGame = /*#__PURE__*/function () {
     this.container.append(this.errorDiv);
     this.errorDiv.classList.add("errorCounter");
     this.errorDiv.innerHTML = "Errors:".concat(this.errorCounter);
+    this.finishGame = new _finish_game_finish_game__WEBPACK_IMPORTED_MODULE_1__["default"]();
   }
 
   _createClass(playGame, [{
@@ -193,8 +270,6 @@ var playGame = /*#__PURE__*/function () {
 
           _this.container.append(_this.playButtonRepeat);
 
-          console.log(_this.picsContainer);
-
           _this.playButton.remove();
         });
 
@@ -215,7 +290,6 @@ var playGame = /*#__PURE__*/function () {
       this.picsContainer.forEach(function (item) {
         item.addEventListener("click", function (event) {
           _this2.currentTarget = event.target;
-          console.log(_this2.currentTarget);
 
           if (_this2.audioArr[0].includes(item.alt)) {
             _this2.correctAudio.src = 'src/data/audio/success.mp3';
@@ -236,8 +310,17 @@ var playGame = /*#__PURE__*/function () {
 
             _this2.errorDiv.innerHTML = "Errors:".concat(_this2.errorCounter += 1);
           }
+
+          _this2.onEndGame();
         });
       });
+    }
+  }, {
+    key: "onEndGame",
+    value: function onEndGame() {
+      if (!this.audioArr.length) {
+        this.errorCounter ? this.finishGame.failGame(this.errorCounter) : this.finishGame.winGame();
+      }
     }
   }, {
     key: "init",
