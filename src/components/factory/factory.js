@@ -5,6 +5,7 @@ export default class Factory {
     constructor() {
         this.rendercards = new RenderCards()
         this.playGame = new playGame()
+
     }
     init() {
         this.rendercards.init()
