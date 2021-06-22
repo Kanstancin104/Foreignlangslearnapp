@@ -6,7 +6,6 @@ export default class Factory {
         this.rendercards = new RenderCards()
         this.playGame = new playGame()
     }
-
     init() {
         this.rendercards.init()
         this.playGame.init()
