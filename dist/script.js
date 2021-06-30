@@ -152,8 +152,8 @@ var finishGame = /*#__PURE__*/function () {
 
     this.container = document.querySelector(".container");
     this.newGameButton = document.createElement("div");
-    this.newGameButton.classList.add("newGame");
-    this.newGameButton.innerHTML = "New Game";
+    this.newGameButton.classList.add("playButtonClassWin");
+    this.newGameButton.innerHTML = "Новая гульня";
   }
 
   _createClass(finishGame, [{
@@ -168,13 +168,16 @@ var finishGame = /*#__PURE__*/function () {
     value: function failGame(count) {
       this.removeAllChildNodes(this.container);
       this.lose = document.createElement("div");
-      this.lose.classList.add("loseMessage");
+      this.lose.classList.add("winMessage");
       this.container.append(this.lose);
       this.lose.innerHTML = "Нажаль, вы не выгралі, паспрабуйце згуляць зноў";
-      this.container.append(this.errorAmount);
       this.errorAmount = document.createElement("div");
-      this.errorAmount.classList.add("errorAmount");
+      this.errorAmount.classList.add("winMessage");
       this.errorAmount.innerHTML = "\u041A\u043E\u043B\u044C\u043A\u0430\u0441\u044C\u0446\u044C \u043F\u0430\u043C\u044B\u043B\u0430\u043A: ".concat(count);
+      this.container.append(this.errorAmount);
+      this.winImage = document.createElement("div");
+      this.winImage.classList.add("winImage");
+      this.container.append(this.winImage);
       this.resetGame();
     }
   }, {
@@ -185,6 +188,9 @@ var finishGame = /*#__PURE__*/function () {
       this.win.classList.add("winMessage");
       this.container.append(this.win);
       this.win.innerHTML = "Віншую! Вы выгралі!";
+      this.winImage = document.createElement("div");
+      this.winImage.classList.add("winImage");
+      this.container.append(this.winImage);
       this.resetGame();
     }
   }, {
@@ -233,7 +239,7 @@ var playGame = /*#__PURE__*/function () {
     this.playButton.classList.add("playButtonClass");
     this.container = document.querySelector(".container");
     this.container.append(this.playButton);
-    this.playButton.innerHTML = "Start game";
+    this.playButton.innerHTML = "Spielen";
     this.picsContainer = document.querySelectorAll("cardImage");
     this.audio = new Audio();
     this.audioArr = [];
@@ -243,10 +249,12 @@ var playGame = /*#__PURE__*/function () {
     this.playButtonRepeat.classList.add("playButtonRepeatClass");
     this.errorCounter = 0;
     this.errorDiv = document.createElement("div");
-    this.container.append(this.errorDiv);
     this.errorDiv.classList.add("errorCounter");
-    this.errorDiv.innerHTML = "Errors:".concat(this.errorCounter);
+    this.errorDiv.innerHTML = "Fehler : ".concat(this.errorCounter);
     this.finishGame = new _finish_game_finish_game__WEBPACK_IMPORTED_MODULE_1__["default"]();
+    this.span = document.createElement("div");
+    this.span.classList.add("span");
+    this.playButtonRepeat.append(this.span);
   }
 
   _createClass(playGame, [{
@@ -268,9 +276,11 @@ var playGame = /*#__PURE__*/function () {
 
           _this.audio.play();
 
-          _this.container.append(_this.playButtonRepeat);
-
           _this.playButton.remove();
+
+          _this.container.append(_this.errorDiv);
+
+          _this.container.append(_this.playButtonRepeat);
         });
 
         _this.playButtonRepeat.addEventListener("click", function () {
@@ -372,15 +382,15 @@ var RenderCards = /*#__PURE__*/function () {
       for (var i = 0; i < _data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][0].length; i++) {
         this.image = document.createElement("img");
         this.image.classList.add("cardImage");
-        this.image.src = _data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][0][i].img;
-        this.belText = document.createElement("p");
-        this.belText.innerHTML = _data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][0][i].translation;
-        this.belText.classList.add("translationClass");
+        this.image.src = _data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][0][i].img; // this.belText = document.createElement("p");
+        // this.belText.innerHTML = cards[0][i].translation;
+        // this.belText.classList.add("translationClass");
+
         this.cardSection = document.createElement("div");
         this.cardSection.classList.add("sectionClass");
         this.cardSection.append(this.image);
-        this.cardsContainer.append(this.cardSection);
-        this.cardSection.append(this.belText);
+        this.cardsContainer.append(this.cardSection); // this.cardSection.append(this.belText);
+
         this.image.alt = _data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][0][i].audio;
       }
     }

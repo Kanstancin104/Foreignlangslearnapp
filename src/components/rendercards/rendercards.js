@@ -13,14 +13,14 @@ export default class RenderCards {
             this.image = document.createElement("img");
             this.image.classList.add("cardImage");
             this.image.src = cards[0][i].img;
-            this.belText = document.createElement("p");
-            this.belText.innerHTML = cards[0][i].translation;
-            this.belText.classList.add("translationClass");
+            // this.belText = document.createElement("p");
+            // this.belText.innerHTML = cards[0][i].translation;
+            // this.belText.classList.add("translationClass");
             this.cardSection = document.createElement("div");
             this.cardSection.classList.add("sectionClass");
             this.cardSection.append(this.image);
             this.cardsContainer.append(this.cardSection);
-            this.cardSection.append(this.belText);
+            // this.cardSection.append(this.belText);
             this.image.alt = cards[0][i].audio;
         }
     }
