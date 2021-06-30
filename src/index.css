@@ -1,5 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Oswald:wght@200&display=swap');
 @import "../components/playgame/playGame.css";
+@import url('https://fonts.googleapis.com/css2?family=Jomhuria&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@700&display=swap');
 .containercards {
     width: 100%;
     height: auto;
@@ -45,16 +47,21 @@
 }
 
 .playButtonClass {
-    display: inline-block;
-    padding: 0.5em 3em;
-    border: 0.16em solid #1d0303;
-    margin: 0 0.3em 0.3em 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    border: black 1px solid;
+    height: 50px;
+    box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
+    margin: 20px 0.3em 0.3em 0;
     box-sizing: border-box;
     text-decoration: none;
     text-transform: uppercase;
-    font-family: 'Roboto', sans-serif;
+    font-family: 'Jomhuria', cursive;
     font-weight: 400;
-    color: #3b0e0e;
+    font-size: 4rem;
+    color: black;
     text-align: center;
     transition: all 0.15s;
     cursor: pointer;
@@ -72,8 +79,8 @@
 
 .playButtonRepeatClass {
     display: inline-block;
-    padding: 0.5em 3em;
-    border: 0.16em solid #c22121;
+    padding: 0.5em 5em;
+    box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
     margin: 0 0.3em 0.3em 0;
     box-sizing: border-box;
     text-decoration: none;
@@ -85,4 +92,53 @@
     transition: all 0.15s;
     cursor: pointer;
     border-radius: 30px;
+}
+
+.errorCounter {
+    font-size: 3rem;
+    margin: 10px;
+    font-family: 'Jomhuria', cursive;
+}
+
+.span {
+    background-image: url("../src/data/img/newgame.png");
+    background-size: cover;
+    background-position: center;
+    height: 30px;
+    width: 30px;
+}
+
+.playButtonClassWin {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 200px;
+    border: black 1px solid;
+    height: 50px;
+    box-shadow: inset 2px 2px 5px rgba(154, 147, 140, 0.5), 1px 1px 5px rgba(255, 255, 255, 1);
+    margin: 20px 0.3em 0.3em 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-weight: 400;
+    font-size: 1.5rem;
+    color: black;
+    text-align: center;
+    transition: all 0.15s;
+    cursor: pointer;
+}
+
+.winMessage {
+    font-family: 'PT Sans Narrow', sans-serif;
+    font-size: 2rem;
+    margin-top: 100px;
+}
+
+.winImage {
+    background-image: url("https://media.giphy.com/media/3oEduLiXJfAh0ynigM/giphy.gif");
+    height: 200px;
+    width: 400px;
+    background-size: cover;
+    background-position: center;
 }

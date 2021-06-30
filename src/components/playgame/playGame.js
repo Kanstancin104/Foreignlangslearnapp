@@ -7,7 +7,7 @@ export default class playGame {
         this.playButton.classList.add("playButtonClass");
         this.container = document.querySelector(".container");
         this.container.append(this.playButton);
-        this.playButton.innerHTML = "Start game";
+        this.playButton.innerHTML = "Spielen";
         this.picsContainer = document.querySelectorAll("cardImage");
         this.audio = new Audio()
         this.audioArr = []
@@ -17,10 +17,12 @@ export default class playGame {
         this.playButtonRepeat.classList.add("playButtonRepeatClass");
         this.errorCounter = 0;
         this.errorDiv = document.createElement("div");
-        this.container.append(this.errorDiv);
         this.errorDiv.classList.add("errorCounter");
-        this.errorDiv.innerHTML = `Errors:${this.errorCounter}`;
+        this.errorDiv.innerHTML = `Fehler : ${this.errorCounter}`;
         this.finishGame = new finishGame()
+        this.span = document.createElement("div");
+        this.span.classList.add("span");
+        this.playButtonRepeat.append(this.span);
     }
 
     onPlayGame() {
@@ -31,8 +33,9 @@ export default class playGame {
                 this.audioArr.sort(() => Math.random() - 0.5)
                 this.audio.src = this.audioArr[0];
                 this.audio.play();
-                this.container.append(this.playButtonRepeat);
                 this.playButton.remove();
+                this.container.append(this.errorDiv);
+                this.container.append(this.playButtonRepeat);
 
             })
             this.playButtonRepeat.addEventListener("click", () => {
