@@ -98,6 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Factory; });
 /* harmony import */ var _rendercards_rendercards__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../rendercards/rendercards */ "./src/components/rendercards/rendercards.js");
 /* harmony import */ var _playgame_playGame__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../playgame/playGame */ "./src/components/playgame/playGame.js");
+/* harmony import */ var _menu_menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../menu/menu */ "./src/components/menu/menu.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -107,19 +108,22 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
+
 var Factory = /*#__PURE__*/function () {
   function Factory() {
     _classCallCheck(this, Factory);
 
-    this.rendercards = new _rendercards_rendercards__WEBPACK_IMPORTED_MODULE_0__["default"]();
-    this.playGame = new _playgame_playGame__WEBPACK_IMPORTED_MODULE_1__["default"]();
+    // this.rendercards = new RenderCards()
+    // this.playGame = new playGame()
+    this.menu = new _menu_menu__WEBPACK_IMPORTED_MODULE_2__["default"]();
   }
 
   _createClass(Factory, [{
     key: "init",
     value: function init() {
-      this.rendercards.init();
-      this.playGame.init();
+      // this.rendercards.init()
+      // this.playGame.init()
+      this.menu.init();
     }
   }]);
 
@@ -130,9 +134,9 @@ var Factory = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./src/components/finish_game/finish_game.js":
+/***/ "./src/components/finish-game/finish_game.js":
 /*!***************************************************!*\
-  !*** ./src/components/finish_game/finish_game.js ***!
+  !*** ./src/components/finish-game/finish_game.js ***!
   \***************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -210,6 +214,64 @@ var finishGame = /*#__PURE__*/function () {
 
 /***/ }),
 
+/***/ "./src/components/menu/menu.js":
+/*!*************************************!*\
+  !*** ./src/components/menu/menu.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Menu; });
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../helpers */ "./src/helpers.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+var Menu = /*#__PURE__*/function () {
+  function Menu() {
+    _classCallCheck(this, Menu);
+
+    this.menuContainer = document.createElement("div");
+    this.menuContainer.classList.add("menuContainer");
+    this.main = document.querySelector(".main");
+    this.main.append(this.menuContainer);
+  }
+
+  _createClass(Menu, [{
+    key: "renderMenu",
+    value: function renderMenu() {
+      this.title = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h3", "title");
+      this.title.innerHTML = "Прыкладаньне для вывучэньня нямецкае мовы";
+      this.menuContainer.append(this.title);
+      this.linksContainer = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "linksContainer");
+      this.menuContainer.append(this.linksContainer);
+      this.trainLink = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "trainLink");
+      this.gameLink = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "gameLink");
+      this.linksContainer.append(this.trainLink);
+      this.linksContainer.append(this.gameLink);
+      this.trainLink.innerHTML = "Трэнавальны рэжым";
+      this.gameLink.innerHTML = "Рэжым гульні";
+    }
+  }, {
+    key: "init",
+    value: function init() {
+      this.renderMenu();
+    }
+  }]);
+
+  return Menu;
+}();
+
+
+
+/***/ }),
+
 /***/ "./src/components/playgame/playGame.js":
 /*!*********************************************!*\
   !*** ./src/components/playgame/playGame.js ***!
@@ -221,7 +283,7 @@ var finishGame = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return playGame; });
 /* harmony import */ var _data_cards__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../data/cards */ "./src/data/cards.js");
-/* harmony import */ var _finish_game_finish_game__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../finish_game/finish_game */ "./src/components/finish_game/finish_game.js");
+/* harmony import */ var _finish_game_finish_game__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../finish-game/finish_game */ "./src/components/finish-game/finish_game.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -372,7 +434,10 @@ var RenderCards = /*#__PURE__*/function () {
 
     this.cardsContainer = document.createElement("div");
     this.cardsContainer.classList.add("containercards");
-    this.container = document.querySelector(".container");
+    this.container = document.createElement("div");
+    this.container.classList.add("container");
+    this.main = document.querySelector(".main");
+    this.main.append(this.container);
     this.container.append(this.cardsContainer);
   }
 
@@ -382,15 +447,11 @@ var RenderCards = /*#__PURE__*/function () {
       for (var i = 0; i < _data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][0].length; i++) {
         this.image = document.createElement("img");
         this.image.classList.add("cardImage");
-        this.image.src = _data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][0][i].img; // this.belText = document.createElement("p");
-        // this.belText.innerHTML = cards[0][i].translation;
-        // this.belText.classList.add("translationClass");
-
+        this.image.src = _data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][0][i].img;
         this.cardSection = document.createElement("div");
         this.cardSection.classList.add("sectionClass");
         this.cardSection.append(this.image);
-        this.cardsContainer.append(this.cardSection); // this.cardSection.append(this.belText);
-
+        this.cardsContainer.append(this.cardSection);
         this.image.alt = _data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][0][i].audio;
       }
     }
@@ -467,6 +528,24 @@ var cards = [[{
   id: 7
 }]];
 /* harmony default export */ __webpack_exports__["default"] = (cards);
+
+/***/ }),
+
+/***/ "./src/helpers.js":
+/*!************************!*\
+  !*** ./src/helpers.js ***!
+  \************************/
+/*! exports provided: createElement */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "createElement", function() { return createElement; });
+var createElement = function createElement(tag, className) {
+  var element = document.createElement(tag);
+  element.classList.add(className);
+  return element;
+};
 
 /***/ }),
 
