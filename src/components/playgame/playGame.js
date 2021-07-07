@@ -1,5 +1,5 @@
 import cards from "../../data/cards";
-import finishGame from "../finish_game/finish_game";
+import finishGame from "../finish-game/finish_game";
 
 export default class playGame {
     constructor() {
