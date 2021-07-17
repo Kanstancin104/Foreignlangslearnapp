@@ -1,3 +1,5 @@
+import Menu from "../menu/menu"
+
 export default class finishGame {
     constructor() {
         this.container = document.querySelector(".container");
@@ -44,7 +46,9 @@ export default class finishGame {
     resetGame() {
         this.container.append(this.newGameButton);
         this.newGameButton.addEventListener("click", () => {
-            window.location.reload();
+            this.container.remove();
+            this.menu = new Menu()
+            this.menu.init()
         })
     }
 }

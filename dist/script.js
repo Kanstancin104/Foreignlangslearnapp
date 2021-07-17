@@ -98,7 +98,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Factory; });
 /* harmony import */ var _rendercards_rendercards__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../rendercards/rendercards */ "./src/components/rendercards/rendercards.js");
 /* harmony import */ var _playgame_playGame__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../playgame/playGame */ "./src/components/playgame/playGame.js");
-/* harmony import */ var _menu_menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../menu/menu */ "./src/components/menu/menu.js");
+/* harmony import */ var _renderTrain_renderTrain__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../renderTrain/renderTrain */ "./src/components/renderTrain/renderTrain.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -106,6 +106,7 @@ function _defineProperties(target, props) { for (var i = 0; i < props.length; i+
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
 
 
+ // import Menu from "../menu/menu"
 
 
 
@@ -113,17 +114,15 @@ var Factory = /*#__PURE__*/function () {
   function Factory() {
     _classCallCheck(this, Factory);
 
-    // this.rendercards = new RenderCards()
-    // this.playGame = new playGame()
-    this.menu = new _menu_menu__WEBPACK_IMPORTED_MODULE_2__["default"]();
+    // this.menu = new Menu()
+    this.renderTrain = new _renderTrain_renderTrain__WEBPACK_IMPORTED_MODULE_2__["default"]();
   }
 
   _createClass(Factory, [{
     key: "init",
     value: function init() {
-      // this.rendercards.init()
-      // this.playGame.init()
-      this.menu.init();
+      // this.menu.init()
+      this.renderTrain.init();
     }
   }]);
 
@@ -134,21 +133,24 @@ var Factory = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./src/components/finish-game/finish_game.js":
-/*!***************************************************!*\
-  !*** ./src/components/finish-game/finish_game.js ***!
-  \***************************************************/
+/***/ "./src/components/finishGame/finishGame.js":
+/*!*************************************************!*\
+  !*** ./src/components/finishGame/finishGame.js ***!
+  \*************************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return finishGame; });
+/* harmony import */ var _menu_menu__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../menu/menu */ "./src/components/menu/menu.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
 
 var finishGame = /*#__PURE__*/function () {
   function finishGame() {
@@ -200,9 +202,15 @@ var finishGame = /*#__PURE__*/function () {
   }, {
     key: "resetGame",
     value: function resetGame() {
+      var _this = this;
+
       this.container.append(this.newGameButton);
       this.newGameButton.addEventListener("click", function () {
-        window.location.reload();
+        _this.container.remove();
+
+        _this.menu = new _menu_menu__WEBPACK_IMPORTED_MODULE_0__["default"]();
+
+        _this.menu.init();
       });
     }
   }]);
@@ -225,6 +233,8 @@ var finishGame = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Menu; });
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../helpers */ "./src/helpers.js");
+/* harmony import */ var _rendercards_rendercards__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../rendercards/rendercards */ "./src/components/rendercards/rendercards.js");
+/* harmony import */ var _playgame_playGame__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../playgame/playGame */ "./src/components/playgame/playGame.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -233,12 +243,13 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
+
+
 var Menu = /*#__PURE__*/function () {
   function Menu() {
     _classCallCheck(this, Menu);
 
-    this.menuContainer = document.createElement("div");
-    this.menuContainer.classList.add("menuContainer");
+    this.menuContainer = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "menuContainer");
     this.main = document.querySelector(".main");
     this.main.append(this.menuContainer);
   }
@@ -259,9 +270,26 @@ var Menu = /*#__PURE__*/function () {
       this.gameLink.innerHTML = "Рэжым гульні";
     }
   }, {
+    key: "startGameMode",
+    value: function startGameMode() {
+      var _this = this;
+
+      this.gameLink.addEventListener("click", function () {
+        _this.menuContainer.remove();
+
+        _this.rendercards = new _rendercards_rendercards__WEBPACK_IMPORTED_MODULE_1__["default"]();
+        _this.playGame = new _playgame_playGame__WEBPACK_IMPORTED_MODULE_2__["default"]();
+
+        _this.rendercards.init();
+
+        _this.playGame.init();
+      });
+    }
+  }, {
     key: "init",
     value: function init() {
       this.renderMenu();
+      this.startGameMode();
     }
   }]);
 
@@ -283,7 +311,7 @@ var Menu = /*#__PURE__*/function () {
 __webpack_require__.r(__webpack_exports__);
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return playGame; });
 /* harmony import */ var _data_cards__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../data/cards */ "./src/data/cards.js");
-/* harmony import */ var _finish_game_finish_game__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../finish-game/finish_game */ "./src/components/finish-game/finish_game.js");
+/* harmony import */ var _finishGame_finishGame__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../finishGame/finishGame */ "./src/components/finishGame/finishGame.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
@@ -313,7 +341,7 @@ var playGame = /*#__PURE__*/function () {
     this.errorDiv = document.createElement("div");
     this.errorDiv.classList.add("errorCounter");
     this.errorDiv.innerHTML = "Fehler : ".concat(this.errorCounter);
-    this.finishGame = new _finish_game_finish_game__WEBPACK_IMPORTED_MODULE_1__["default"]();
+    this.finishGame = new _finishGame_finishGame__WEBPACK_IMPORTED_MODULE_1__["default"]();
     this.span = document.createElement("div");
     this.span.classList.add("span");
     this.playButtonRepeat.append(this.span);
@@ -403,6 +431,76 @@ var playGame = /*#__PURE__*/function () {
   }]);
 
   return playGame;
+}();
+
+
+
+/***/ }),
+
+/***/ "./src/components/renderTrain/renderTrain.js":
+/*!***************************************************!*\
+  !*** ./src/components/renderTrain/renderTrain.js ***!
+  \***************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return renderTrain; });
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../helpers */ "./src/helpers.js");
+/* harmony import */ var _data_cards__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../data/cards */ "./src/data/cards.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+var renderTrain = /*#__PURE__*/function () {
+  function renderTrain() {
+    _classCallCheck(this, renderTrain);
+
+    this.trainContainer = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "trainContainer");
+    this.main = document.querySelector(".main");
+    this.main.append(this.trainContainer);
+  }
+
+  _createClass(renderTrain, [{
+    key: "onRenderCards",
+    value: function onRenderCards() {
+      for (var i = 0; i < _data_cards__WEBPACK_IMPORTED_MODULE_1__["default"][0].length; i++) {
+        this.flipCard = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "flip-card");
+        this.flipCardInner = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "flip-card-inner");
+        this.flipCardFront = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "flip-card-front");
+        this.imgAvatar = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", "imgAvatar");
+        this.imgAvatar.src = _data_cards__WEBPACK_IMPORTED_MODULE_1__["default"][0][i].img;
+        this.imgAvatarFront = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", "imgAvatar");
+        this.imgAvatarFront.src = _data_cards__WEBPACK_IMPORTED_MODULE_1__["default"][0][i].img;
+        this.flipCardBack = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "flip-card-back");
+        this.belText = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "belText");
+        this.belText.innerHTML = _data_cards__WEBPACK_IMPORTED_MODULE_1__["default"][0][i].translation;
+        this.gemText = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "gemText");
+        this.gemText.innerHTML = _data_cards__WEBPACK_IMPORTED_MODULE_1__["default"][0][i].word;
+        this.flipCardFront.append(this.imgAvatarFront);
+        this.flipCardFront.append(this.gemText);
+        this.flipCardBack.append(this.imgAvatar);
+        this.flipCardBack.append(this.belText);
+        this.flipCardInner.append(this.flipCardFront);
+        this.flipCardInner.append(this.flipCardBack);
+        this.flipCard.append(this.flipCardInner);
+        this.trainContainer.append(this.flipCard);
+      }
+    }
+  }, {
+    key: "init",
+    value: function init() {
+      this.onRenderCards();
+    }
+  }]);
+
+  return renderTrain;
 }();
 
 
