@@ -4,7 +4,10 @@ export default class RenderCards {
     constructor() {
         this.cardsContainer = document.createElement("div");
         this.cardsContainer.classList.add("containercards");
-        this.container = document.querySelector(".container");
+        this.container = document.createElement("div");
+        this.container.classList.add("container");
+        this.main = document.querySelector(".main");
+        this.main.append(this.container);
         this.container.append(this.cardsContainer);
     }
 
@@ -13,14 +16,10 @@ export default class RenderCards {
             this.image = document.createElement("img");
             this.image.classList.add("cardImage");
             this.image.src = cards[0][i].img;
-            // this.belText = document.createElement("p");
-            // this.belText.innerHTML = cards[0][i].translation;
-            // this.belText.classList.add("translationClass");
             this.cardSection = document.createElement("div");
             this.cardSection.classList.add("sectionClass");
             this.cardSection.append(this.image);
             this.cardsContainer.append(this.cardSection);
-            // this.cardSection.append(this.belText);
             this.image.alt = cards[0][i].audio;
         }
     }
