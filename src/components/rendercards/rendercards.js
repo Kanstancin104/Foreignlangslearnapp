@@ -1,4 +1,6 @@
-import cards from "../../data/cards"
+import cards from "../../data/cards";
+import Menu from "../menu/menu";
+import { createElement } from "../../helpers";
 
 export default class RenderCards {
     constructor() {
@@ -7,8 +9,21 @@ export default class RenderCards {
         this.container = document.createElement("div");
         this.container.classList.add("container");
         this.main = document.querySelector(".main");
+        this.BackButton = createElement("div", "backButton");
+        this.main.append(this.BackButton);
         this.main.append(this.container);
         this.container.append(this.cardsContainer);
+
+    }
+
+    onClickBackButton() {
+        this.BackButton.addEventListener("click", () => {
+            this.container.remove();
+            this.BackButton.remove();
+            this.menu = new Menu();
+            this.menu.init();
+
+        })
     }
 
     onRenderCards() {
@@ -26,6 +41,7 @@ export default class RenderCards {
 
     init() {
         this.onRenderCards();
+        this.onClickBackButton();
     }
 
 }
