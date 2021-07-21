@@ -150,14 +150,29 @@
     width: 255px;
     height: 360px;
     transition: 0.5s;
-    opacity: 0.7;
+    opacity: 1;
     border: 2px solid #60aaf6;
+    font-size: 30px;
+    color: white;
+    display: flex;
+    align-items: flex-end;
+    transition: 1s;
 }
 
-.gameLink {}
+.gameLink {
+    background-image: url("../src/data/img/game.jpeg");
+    background-size: cover;
+}
+
+.trainLink {
+    background-image: url("../src/data/img/train.jpeg");
+    background-size: cover;
+}
 
 .trainLink,
 .gameLink {
+    transition: 1s;
+    opacity: 0.5;
     display: flex;
     flex-direction: row;
     justify-content: center;
@@ -256,4 +271,11 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
+}
+
+.backButton {
+    width: 200px;
+    height: 200px;
+    border: 1px black solid;
+    margin: 20px;
 }

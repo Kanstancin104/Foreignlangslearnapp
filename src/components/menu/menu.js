@@ -1,6 +1,7 @@
-import { createElement } from "../../helpers"
-import RenderCards from "../rendercards/rendercards"
-import playGame from "../playgame/playGame"
+import { createElement } from "../../helpers";
+import RenderCards from "../rendercards/rendercards";
+import playGame from "../playgame/playGame";
+import renderTrain from "../renderTrain/renderTrain";
 
 export default class Menu {
     constructor() {
@@ -11,7 +12,7 @@ export default class Menu {
 
     renderMenu() {
         this.title = createElement("h3", "title");
-        this.title.innerHTML = "Прыкладаньне для вывучэньня нямецкае мовы";
+        this.title.innerHTML = "Прыкладаньне для вывучэньня замежных моў";
         this.menuContainer.append(this.title);
         this.linksContainer = createElement("div", "linksContainer");
         this.menuContainer.append(this.linksContainer);
@@ -33,9 +34,18 @@ export default class Menu {
         })
     }
 
+    startTrainMode() {
+        this.trainLink.addEventListener("click", () => {
+            this.menuContainer.remove();
+            this.renderTrain = new renderTrain();
+            this.renderTrain.init();
+        })
+    }
+
     init() {
         this.renderMenu();
         this.startGameMode();
+        this.startTrainMode();
     }
 
 }
