@@ -11,20 +11,20 @@ export default class renderTrain {
         this.main.append(this.trainContainer);
     }
 
-    onRenderCards() {
-        for (let i = 0; i < cards[1].length; i++) {
+    onRenderCards(lang) {
+        for (let i = 0; i < cards[lang].length; i++) {
             this.flipCard = createElement("div", "flip-card");
             this.flipCardInner = createElement("div", "flip-card-inner");
             this.flipCardFront = createElement("div", "flip-card-front");
             this.imgAvatar = createElement("img", "imgAvatar");
-            this.imgAvatar.src = cards[1][i].img;
+            this.imgAvatar.src = cards[lang][i].img;
             this.imgAvatarFront = createElement("img", "imgAvatar");
-            this.imgAvatarFront.src = cards[1][i].img;
+            this.imgAvatarFront.src = cards[lang][i].img;
             this.flipCardBack = createElement("div", "flip-card-back");
             this.belText = createElement("div", "belText");
-            this.belText.innerHTML = cards[1][i].translation;
+            this.belText.innerHTML = cards[lang][i].translation;
             this.gemText = createElement("div", "gemText");
-            this.gemText.innerHTML = cards[1][i].word;
+            this.gemText.innerHTML = cards[lang][i].word;
             this.flipCardFront.append(this.imgAvatarFront);
             this.flipCardFront.append(this.gemText);
             this.flipCardBack.append(this.imgAvatar);
@@ -46,8 +46,8 @@ export default class renderTrain {
         })
     }
 
-    init() {
-        this.onRenderCards();
+    init(lang) {
+        this.onRenderCards(lang);
         this.onClickBackButton();
     }
 }

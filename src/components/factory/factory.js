@@ -1,6 +1,7 @@
 import RenderCards from "../rendercards/rendercards"
 import playGame from "../playgame/playGame"
 import Menu from "../menu/menu"
+import langMenu from "../langMenu/langMenu"
 // import renderTrain from "../renderTrain/renderTrain"
 
 export default class Factory {
