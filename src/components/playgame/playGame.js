@@ -25,11 +25,11 @@ export default class playGame {
         this.playButtonRepeat.append(this.span);
     }
 
-    onPlayGame() {
+    onPlayGame(lang) {
         this.picsContainer = document.querySelectorAll(".cardImage");
-        for (let i = 0; i < cards[0].length; i++) {
+        for (let i = 0; i < cards[lang].length; i++) {
             this.playButton.addEventListener("click", () => {
-                this.audioArr.push(cards[0][i].audio)
+                this.audioArr.push(cards[lang][i].audio)
                 this.audioArr.sort(() => Math.random() - 0.5)
                 this.audio.src = this.audioArr[0];
                 this.audio.play();
@@ -44,7 +44,7 @@ export default class playGame {
         }
     }
 
-    chooseCard() {
+    chooseCard(lang) {
         this.picsContainer.forEach(item => {
             item.addEventListener("click", (event) => {
                 this.currentTarget = event.target;
@@ -75,8 +75,8 @@ export default class playGame {
         }
     }
 
-    init() {
-        this.onPlayGame()
+    init(lang) {
+        this.onPlayGame(lang)
         this.chooseCard()
 
     }

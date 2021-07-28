@@ -2,9 +2,12 @@ import { createElement } from "../../helpers";
 import RenderCards from "../rendercards/rendercards";
 import playGame from "../playgame/playGame";
 import renderTrain from "../renderTrain/renderTrain";
+import langMenu from "../langMenu/langMenu";
 
 export default class Menu {
     constructor() {
+        this.game = "game";
+        this.train = "train";
         this.menuContainer = createElement("div", "menuContainer");
         this.main = document.querySelector(".main");
         this.main.append(this.menuContainer);
@@ -27,18 +30,22 @@ export default class Menu {
     startGameMode() {
         this.gameLink.addEventListener("click", () => {
             this.menuContainer.remove();
-            this.rendercards = new RenderCards();
-            this.playGame = new playGame();
-            this.rendercards.init();
-            this.playGame.init();
+            // this.rendercards = new RenderCards();
+            // this.playGame = new playGame();
+            // this.rendercards.init();
+            // this.playGame.init();
+            this.langMenu = new langMenu();
+            this.langMenu.init(this.game);
         })
     }
 
     startTrainMode() {
         this.trainLink.addEventListener("click", () => {
             this.menuContainer.remove();
-            this.renderTrain = new renderTrain();
-            this.renderTrain.init();
+            // this.renderTrain = new renderTrain();
+            // this.renderTrain.init();
+            this.langMenu = new langMenu();
+            this.langMenu.init(this.train);
         })
     }
 

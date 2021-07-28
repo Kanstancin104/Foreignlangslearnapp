@@ -26,21 +26,21 @@ export default class RenderCards {
         })
     }
 
-    onRenderCards() {
-        for (let i = 0; i < cards[0].length; i++) {
+    onRenderCards(lang) {
+        for (let i = 0; i < cards[lang].length; i++) {
             this.image = document.createElement("img");
             this.image.classList.add("cardImage");
-            this.image.src = cards[0][i].img;
+            this.image.src = cards[lang][i].img;
             this.cardSection = document.createElement("div");
             this.cardSection.classList.add("sectionClass");
             this.cardSection.append(this.image);
             this.cardsContainer.append(this.cardSection);
-            this.image.alt = cards[0][i].audio;
+            this.image.alt = cards[lang][i].audio;
         }
     }
 
-    init() {
-        this.onRenderCards();
+    init(lang) {
+        this.onRenderCards(lang);
         this.onClickBackButton();
     }
 

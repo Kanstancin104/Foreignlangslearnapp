@@ -99,11 +99,13 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _rendercards_rendercards__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../rendercards/rendercards */ "./src/components/rendercards/rendercards.js");
 /* harmony import */ var _playgame_playGame__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../playgame/playGame */ "./src/components/playgame/playGame.js");
 /* harmony import */ var _menu_menu__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../menu/menu */ "./src/components/menu/menu.js");
+/* harmony import */ var _langMenu_langMenu__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../langMenu/langMenu */ "./src/components/langMenu/langMenu.js");
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
 
 function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
 
 
 
@@ -219,16 +221,16 @@ var finishGame = /*#__PURE__*/function () {
 
 /***/ }),
 
-/***/ "./src/components/menu/menu.js":
-/*!*************************************!*\
-  !*** ./src/components/menu/menu.js ***!
-  \*************************************/
+/***/ "./src/components/langMenu/langMenu.js":
+/*!*********************************************!*\
+  !*** ./src/components/langMenu/langMenu.js ***!
+  \*********************************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Menu; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return langMenu; });
 /* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../helpers */ "./src/helpers.js");
 /* harmony import */ var _rendercards_rendercards__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../rendercards/rendercards */ "./src/components/rendercards/rendercards.js");
 /* harmony import */ var _playgame_playGame__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../playgame/playGame */ "./src/components/playgame/playGame.js");
@@ -244,10 +246,123 @@ function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _d
 
 
 
+var langMenu = /*#__PURE__*/function () {
+  function langMenu() {
+    _classCallCheck(this, langMenu);
+
+    this.langMenuContainer = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "menuContainer");
+    this.main = document.querySelector(".main");
+    this.main.append(this.langMenuContainer);
+  }
+
+  _createClass(langMenu, [{
+    key: "renderLangMenu",
+    value: function renderLangMenu() {
+      this.title = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("h3", "title");
+      this.title.innerHTML = "Абярыце мову";
+      this.langMenuContainer.append(this.title);
+      this.linksContainer = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "linksContainer");
+      this.langMenuContainer.append(this.linksContainer);
+      this.german = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "german");
+      this.english = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "english");
+      this.linksContainer.append(this.german);
+      this.linksContainer.append(this.english);
+      this.german.innerHTML = "Deutsch";
+      this.english.innerHTML = "Englisch";
+    }
+  }, {
+    key: "onStartGerman",
+    value: function onStartGerman(mode) {
+      var _this = this;
+
+      this.german.addEventListener("click", function () {
+        if (mode === "game") {
+          _this.rendercards = new _rendercards_rendercards__WEBPACK_IMPORTED_MODULE_1__["default"]();
+          _this.playGame = new _playgame_playGame__WEBPACK_IMPORTED_MODULE_2__["default"]();
+
+          _this.rendercards.init(0);
+
+          _this.playGame.init(0);
+        } else {
+          _this.renderTrain = new _renderTrain_renderTrain__WEBPACK_IMPORTED_MODULE_3__["default"]();
+
+          _this.renderTrain.init(0);
+        }
+
+        _this.langMenuContainer.remove();
+      });
+    }
+  }, {
+    key: "OnStartEnglish",
+    value: function OnStartEnglish(mode) {
+      var _this2 = this;
+
+      this.english.addEventListener("click", function () {
+        if (mode === "game") {
+          _this2.rendercards = new _rendercards_rendercards__WEBPACK_IMPORTED_MODULE_1__["default"]();
+          _this2.playGame = new _playgame_playGame__WEBPACK_IMPORTED_MODULE_2__["default"]();
+
+          _this2.rendercards.init(1);
+
+          _this2.playGame.init(1);
+        } else {
+          _this2.renderTrain = new _renderTrain_renderTrain__WEBPACK_IMPORTED_MODULE_3__["default"]();
+
+          _this2.renderTrain.init(1);
+        }
+
+        _this2.langMenuContainer.remove();
+      });
+    }
+  }, {
+    key: "init",
+    value: function init(mode) {
+      this.renderLangMenu();
+      this.onStartGerman(mode);
+      this.OnStartEnglish(mode);
+    }
+  }]);
+
+  return langMenu;
+}();
+
+
+
+/***/ }),
+
+/***/ "./src/components/menu/menu.js":
+/*!*************************************!*\
+  !*** ./src/components/menu/menu.js ***!
+  \*************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "default", function() { return Menu; });
+/* harmony import */ var _helpers__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../helpers */ "./src/helpers.js");
+/* harmony import */ var _rendercards_rendercards__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../rendercards/rendercards */ "./src/components/rendercards/rendercards.js");
+/* harmony import */ var _playgame_playGame__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../playgame/playGame */ "./src/components/playgame/playGame.js");
+/* harmony import */ var _renderTrain_renderTrain__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../renderTrain/renderTrain */ "./src/components/renderTrain/renderTrain.js");
+/* harmony import */ var _langMenu_langMenu__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../langMenu/langMenu */ "./src/components/langMenu/langMenu.js");
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } }
+
+function _createClass(Constructor, protoProps, staticProps) { if (protoProps) _defineProperties(Constructor.prototype, protoProps); if (staticProps) _defineProperties(Constructor, staticProps); return Constructor; }
+
+
+
+
+
+
+
 var Menu = /*#__PURE__*/function () {
   function Menu() {
     _classCallCheck(this, Menu);
 
+    this.game = "game";
+    this.train = "train";
     this.menuContainer = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "menuContainer");
     this.main = document.querySelector(".main");
     this.main.append(this.menuContainer);
@@ -274,14 +389,15 @@ var Menu = /*#__PURE__*/function () {
       var _this = this;
 
       this.gameLink.addEventListener("click", function () {
-        _this.menuContainer.remove();
+        _this.menuContainer.remove(); // this.rendercards = new RenderCards();
+        // this.playGame = new playGame();
+        // this.rendercards.init();
+        // this.playGame.init();
 
-        _this.rendercards = new _rendercards_rendercards__WEBPACK_IMPORTED_MODULE_1__["default"]();
-        _this.playGame = new _playgame_playGame__WEBPACK_IMPORTED_MODULE_2__["default"]();
 
-        _this.rendercards.init();
+        _this.langMenu = new _langMenu_langMenu__WEBPACK_IMPORTED_MODULE_4__["default"]();
 
-        _this.playGame.init();
+        _this.langMenu.init(_this.game);
       });
     }
   }, {
@@ -290,11 +406,13 @@ var Menu = /*#__PURE__*/function () {
       var _this2 = this;
 
       this.trainLink.addEventListener("click", function () {
-        _this2.menuContainer.remove();
+        _this2.menuContainer.remove(); // this.renderTrain = new renderTrain();
+        // this.renderTrain.init();
 
-        _this2.renderTrain = new _renderTrain_renderTrain__WEBPACK_IMPORTED_MODULE_3__["default"]();
 
-        _this2.renderTrain.init();
+        _this2.langMenu = new _langMenu_langMenu__WEBPACK_IMPORTED_MODULE_4__["default"]();
+
+        _this2.langMenu.init(_this2.train);
       });
     }
   }, {
@@ -362,14 +480,14 @@ var playGame = /*#__PURE__*/function () {
 
   _createClass(playGame, [{
     key: "onPlayGame",
-    value: function onPlayGame() {
+    value: function onPlayGame(lang) {
       var _this = this;
 
       this.picsContainer = document.querySelectorAll(".cardImage");
 
       var _loop = function _loop(i) {
         _this.playButton.addEventListener("click", function () {
-          _this.audioArr.push(_data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][0][i].audio);
+          _this.audioArr.push(_data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][lang][i].audio);
 
           _this.audioArr.sort(function () {
             return Math.random() - 0.5;
@@ -391,13 +509,13 @@ var playGame = /*#__PURE__*/function () {
         });
       };
 
-      for (var i = 0; i < _data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][0].length; i++) {
+      for (var i = 0; i < _data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][lang].length; i++) {
         _loop(i);
       }
     }
   }, {
     key: "chooseCard",
-    value: function chooseCard() {
+    value: function chooseCard(lang) {
       var _this2 = this;
 
       this.picsContainer.forEach(function (item) {
@@ -437,8 +555,8 @@ var playGame = /*#__PURE__*/function () {
     }
   }, {
     key: "init",
-    value: function init() {
-      this.onPlayGame();
+    value: function init(lang) {
+      this.onPlayGame(lang);
       this.chooseCard();
     }
   }]);
@@ -486,20 +604,20 @@ var renderTrain = /*#__PURE__*/function () {
 
   _createClass(renderTrain, [{
     key: "onRenderCards",
-    value: function onRenderCards() {
-      for (var i = 0; i < _data_cards__WEBPACK_IMPORTED_MODULE_1__["default"][1].length; i++) {
+    value: function onRenderCards(lang) {
+      for (var i = 0; i < _data_cards__WEBPACK_IMPORTED_MODULE_1__["default"][lang].length; i++) {
         this.flipCard = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "flip-card");
         this.flipCardInner = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "flip-card-inner");
         this.flipCardFront = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "flip-card-front");
         this.imgAvatar = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", "imgAvatar");
-        this.imgAvatar.src = _data_cards__WEBPACK_IMPORTED_MODULE_1__["default"][1][i].img;
+        this.imgAvatar.src = _data_cards__WEBPACK_IMPORTED_MODULE_1__["default"][lang][i].img;
         this.imgAvatarFront = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("img", "imgAvatar");
-        this.imgAvatarFront.src = _data_cards__WEBPACK_IMPORTED_MODULE_1__["default"][1][i].img;
+        this.imgAvatarFront.src = _data_cards__WEBPACK_IMPORTED_MODULE_1__["default"][lang][i].img;
         this.flipCardBack = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "flip-card-back");
         this.belText = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "belText");
-        this.belText.innerHTML = _data_cards__WEBPACK_IMPORTED_MODULE_1__["default"][1][i].translation;
+        this.belText.innerHTML = _data_cards__WEBPACK_IMPORTED_MODULE_1__["default"][lang][i].translation;
         this.gemText = Object(_helpers__WEBPACK_IMPORTED_MODULE_0__["createElement"])("div", "gemText");
-        this.gemText.innerHTML = _data_cards__WEBPACK_IMPORTED_MODULE_1__["default"][1][i].word;
+        this.gemText.innerHTML = _data_cards__WEBPACK_IMPORTED_MODULE_1__["default"][lang][i].word;
         this.flipCardFront.append(this.imgAvatarFront);
         this.flipCardFront.append(this.gemText);
         this.flipCardBack.append(this.imgAvatar);
@@ -527,8 +645,8 @@ var renderTrain = /*#__PURE__*/function () {
     }
   }, {
     key: "init",
-    value: function init() {
-      this.onRenderCards();
+    value: function init(lang) {
+      this.onRenderCards(lang);
       this.onClickBackButton();
     }
   }]);
@@ -595,22 +713,22 @@ var RenderCards = /*#__PURE__*/function () {
     }
   }, {
     key: "onRenderCards",
-    value: function onRenderCards() {
-      for (var i = 0; i < _data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][0].length; i++) {
+    value: function onRenderCards(lang) {
+      for (var i = 0; i < _data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][lang].length; i++) {
         this.image = document.createElement("img");
         this.image.classList.add("cardImage");
-        this.image.src = _data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][0][i].img;
+        this.image.src = _data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][lang][i].img;
         this.cardSection = document.createElement("div");
         this.cardSection.classList.add("sectionClass");
         this.cardSection.append(this.image);
         this.cardsContainer.append(this.cardSection);
-        this.image.alt = _data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][0][i].audio;
+        this.image.alt = _data_cards__WEBPACK_IMPORTED_MODULE_0__["default"][lang][i].audio;
       }
     }
   }, {
     key: "init",
-    value: function init() {
-      this.onRenderCards();
+    value: function init(lang) {
+      this.onRenderCards(lang);
       this.onClickBackButton();
     }
   }]);
