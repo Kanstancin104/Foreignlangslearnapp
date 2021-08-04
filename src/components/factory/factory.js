@@ -1,17 +1,12 @@
-import RenderCards from "../rendercards/rendercards"
-import playGame from "../playgame/playGame"
-import Menu from "../menu/menu"
-import langMenu from "../langMenu/langMenu"
-// import renderTrain from "../renderTrain/renderTrain"
+import Menu from "../menu/menu.js";
 
 export default class Factory {
     constructor() {
-        this.menu = new Menu()
-            // this.renderTrain = new renderTrain()
-
+        this.menu = new Menu();
+            
     }
+
     init() {
-        this.menu.init()
-            // this.renderTrain.init()
+        this.menu.init();
     }
 }

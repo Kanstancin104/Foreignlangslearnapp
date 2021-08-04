@@ -1,4 +1,4 @@
-import Menu from "../menu/menu"
+import Menu from "../menu/menu.js";
 
 export default class finishGame {
     constructor() {
@@ -13,7 +13,6 @@ export default class finishGame {
             parent.removeChild(parent.firstChild);
         }
     }
-
 
     failGame(count) {
         this.removeAllChildNodes(this.container);
@@ -47,8 +46,8 @@ export default class finishGame {
         this.container.append(this.newGameButton);
         this.newGameButton.addEventListener("click", () => {
             this.container.remove();
-            this.menu = new Menu()
-            this.menu.init()
-        })
+            this.menu = new Menu();
+            this.menu.init();
+        });
     }
 }

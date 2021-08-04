@@ -1,13 +1,16 @@
 import { createElement } from "../../helpers";
 import RenderCards from "../rendercards/rendercards";
-import playGame from "../playgame/playGame";
-import renderTrain from "../renderTrain/renderTrain";
+import playGame from "../playgame/playGame.js";
+import renderTrain from "../renderTrain/renderTrain.js";
+import Menu from "../menu/menu.js";
 
 export default class langMenu {
     constructor() {
         this.langMenuContainer = createElement("div", "menuContainer");
         this.main = document.querySelector(".main");
         this.main.append(this.langMenuContainer);
+        this.BackButton = createElement("div", "backButton");
+        this.langMenuContainer.append(this.BackButton);
     }
 
     renderLangMenu() {
@@ -36,7 +39,7 @@ export default class langMenu {
                 this.renderTrain.init(0);
             }
             this.langMenuContainer.remove();
-        })
+        });
     }
 
     OnStartEnglish(mode) {
@@ -51,12 +54,22 @@ export default class langMenu {
                 this.renderTrain.init(1);
             }
             this.langMenuContainer.remove();
-        })
+        });
+    }
+
+    onClickBackButton() {
+        this.BackButton.addEventListener("click", () => {
+            this.langMenuContainer.remove();
+            this.BackButton.remove();
+            this.menu = new Menu();
+            this.menu.init();
+        });
     }
 
     init(mode) {
         this.renderLangMenu();
         this.onStartGerman(mode);
         this.OnStartEnglish(mode);
+        this.onClickBackButton();
     }
 }

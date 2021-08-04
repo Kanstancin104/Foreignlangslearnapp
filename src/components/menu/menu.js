@@ -1,4 +1,4 @@
-import { createElement } from "../../helpers";
+import createElement from "../../helpers";
 import RenderCards from "../rendercards/rendercards";
 import playGame from "../playgame/playGame";
 import renderTrain from "../renderTrain/renderTrain";
@@ -36,7 +36,7 @@ export default class Menu {
             // this.playGame.init();
             this.langMenu = new langMenu();
             this.langMenu.init(this.game);
-        })
+        });
     }
 
     startTrainMode() {
@@ -46,7 +46,7 @@ export default class Menu {
             // this.renderTrain.init();
             this.langMenu = new langMenu();
             this.langMenu.init(this.train);
-        })
+        });
     }
 
     init() {
@@ -54,5 +54,4 @@ export default class Menu {
         this.startGameMode();
         this.startTrainMode();
     }
-
 }

@@ -1,6 +1,6 @@
-import { createElement } from "../../helpers";
-import cards from "../../data/cards";
-import Menu from "../menu/menu";
+import createElement from "../../helpers.js";
+import cards from "../../data/cards.js";
+import Menu from "../menu/menu.js";
 
 export default class renderTrain {
     constructor() {
@@ -12,7 +12,7 @@ export default class renderTrain {
     }
 
     onRenderCards(lang) {
-        for (let i = 0; i < cards[lang].length; i++) {
+        for (let i = 0; i < cards[lang].length; i += 1) {
             this.flipCard = createElement("div", "flip-card");
             this.flipCardInner = createElement("div", "flip-card-inner");
             this.flipCardFront = createElement("div", "flip-card-front");
@@ -42,8 +42,7 @@ export default class renderTrain {
             this.BackButton.remove();
             this.menu = new Menu();
             this.menu.init();
-
-        })
+        });
     }
 
     init(lang) {
