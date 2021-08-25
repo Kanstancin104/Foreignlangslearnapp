@@ -1,6 +1,6 @@
 import cards from "../../data/cards.js";
 import Menu from "../menu/menu.js";
-import createElement from "../../helpers.js";
+import {createElement} from "../../helpers.js";
 
 export default class RenderCards {
     constructor() {
