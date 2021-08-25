@@ -1,4 +1,4 @@
-import createElement from "../../helpers";
+import {createElement} from "../../helpers";
 import RenderCards from "../rendercards/rendercards";
 import playGame from "../playgame/playGame";
 import renderTrain from "../renderTrain/renderTrain";
